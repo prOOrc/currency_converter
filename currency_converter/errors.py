@@ -1,0 +1,2 @@
+class CurrencyRateNotExist(Exception):
+    pass

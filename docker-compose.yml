@@ -1,0 +1,22 @@
+version: '2.1'
+services:
+  api:
+    container_name: api
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    volumes:
+      - ./:/home/currency_converter
+    working_dir: /home/currency_converter
+    environment:
+      PYTHONPATH: /home/currency_converter
+      REDIS_URL: redis://redis
+    entrypoint: python -m currency_converter.api
+    ports:
+      - 8080:8080
+    links:
+      - redis
+
+  redis:
+    container_name: redis
+    image: redis:latest
