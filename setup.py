@@ -1,6 +1,6 @@
 import os
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 def read_dependencies(file_path):
@@ -26,16 +26,24 @@ def read_dependencies(file_path):
     return found_dependencies
 
 
-install_requires = read_dependencies('requirements.txt')
+test_requirements = read_dependencies('requirements/requirements-test.txt')
+develop_requirements = read_dependencies('requirements/requirements-dev.txt')
+install_requires = read_dependencies('requirements/requirements-prod.txt')
+setup_requires = read_dependencies('requirements/requirements-setup.txt')
 
 setup(
     name='currency_converter',
     version='',
-    packages=['currency_converter'],
+    packages=find_packages(
+        exclude=('tests',),
+        include=('currency_converter', 'currency_converter.*'),
+    ),
     url='',
     license='',
-    author='iobukhov',
+    author='Ilia Obukhov',
     author_email='proorc9@gmail.com',
     description='Currency Converter',
     install_requires=install_requires,
+    setup_requires=setup_requires,
+    tests_require=test_requirements,
 )
