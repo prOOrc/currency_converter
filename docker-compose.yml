@@ -11,7 +11,7 @@ services:
     environment:
       PYTHONPATH: /home/currency_converter
       REDIS_URL: redis://redis
-    entrypoint: python -m currency_converter.api
+    command: python -m currency_converter.api
     ports:
       - 8080:8080
     links:

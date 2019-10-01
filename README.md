@@ -1,8 +1,13 @@
 # Currency Converter
 
-### Запуск
+### Запуск сервера
 ```shell script
 docker-compose up
+```
+
+### Запуск тестов
+```shell script
+docker-compose run api pytest
 ```
 
 ### Примеры вызовов API
